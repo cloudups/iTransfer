@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.edu.sdust.silence.itransfer">
+
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name=".application.ITransferApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.actionbutton.ActionButtonActivity" />
+        <activity android:name=".activity.ReceiveActivity" />
+        <activity android:name=".activity.SendActivity">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+
+
+        </activity>
+        <activity android:name=".activity.ChoseFileActivity" />
+        <activity
+            android:name=".activity.FtpManagerActivity"
+            android:label="@string/title_activity_ftp_manager" />
+        <activity android:name=".activity.CaptureActivity" />
+        <activity
+            android:name=".activity.ReceiveFromComputerActivity"
+            android:label="@string/title_activity_receive_from_computer" />
+        <activity
+            android:name=".activity.SendToComputerActivity"
+            android:label="@string/title_activity_send_to_computer"></activity>
+
+
+        <service android:name=".ftpserver.ppareit.ppareit.swiftp.FsService" />
+
+        <receiver
+            android:name=".ftpserver.ppareit.ppareit.swiftp.gui.FsNotification"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="be.ppareit.swiftp.FTPSERVER_STARTED" />
+                <action android:name="be.ppareit.swiftp.FTPSERVER_STOPPED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".ftpserver.ppareit.ppareit.swiftp.NsdService" />
+
+        <receiver
+            android:name=".ftpserver.ppareit.ppareit.swiftp.NsdService$StartStopReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="be.ppareit.swiftp.FTPSERVER_STARTED" />
+                <action android:name="be.ppareit.swiftp.FTPSERVER_STOPPED" />
+            </intent-filter>
+        </receiver>
+        <!-- Don't export this receiver in free, this clashes with paid -->
+        <receiver
+            android:name=".ftpserver.ppareit.ppareit.swiftp.RequestStartStopReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="be.ppareit.swiftp.ACTION_START_FTPSERVER" />
+                <action android:name="be.ppareit.swiftp.ACTION_STOP_FTPSERVER" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".ftpserver.ppareit.ppareit.swiftp.WifiStateChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".ftpserver.ppareit.ppareit.swiftp.WifiStateChangeReceiver$StartServerService" />
+        <service android:name=".ftpserver.ppareit.ppareit.swiftp.WifiStateChangeReceiver$StopServerService" />
+
+        <receiver
+            android:name=".ftpserver.ppareit.ppareit.swiftp.gui.FsWidgetProvider"
+            android:exported="false"
+            android:icon="@mipmap/launcher"
+            android:label="@string/swiftp_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="be.ppareit.swiftp.FTPSERVER_STARTED" />
+                <action android:name="be.ppareit.swiftp.FTPSERVER_STOPPED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <service android:name=".ftpserver.ppareit.ppareit.swiftp.gui.FsWidgetProvider$UpdateService" />
+
+
+    </application>
+
+</manifest>

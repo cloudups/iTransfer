@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+Copyright 2011-2013 Pieter Pareit
+
+This file is part of SwiFTP.
+
+SwiFTP is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+SwiFTP is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with SwiFTP.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preference_screen">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="running_switch"
+        android:summary="@string/running_summary_stopped"
+        android:title="@string/running_label" />
+    <Preference
+        android:key="market_version"
+        android:summary="@string/market_version_summary"
+        android:title="@string/market_version_label" />
+
+    <PreferenceCategory
+        android:key="settings"
+        android:title="@string/settings_label">
+
+        <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+            android:key="login"
+            android:summary=""
+            android:title="@string/loginsettings_label">
+            <PreferenceCategory
+                android:key="settings"
+                android:title="@string/user_label">
+                <EditTextPreference
+                    android:defaultValue="@string/username_default"
+                    android:key="username"
+                    android:title="@string/username_label" />
+                <EditTextPreference
+                    android:defaultValue="@string/password_default"
+                    android:inputType="textPassword"
+                    android:key="password"
+                    android:title="@string/password_label" />
+                <CheckBoxPreference
+                    android:defaultValue="@string/show_password_default"
+                    android:key="show_password"
+                    android:title="@string/show_password_label" />
+            </PreferenceCategory>
+            <PreferenceCategory
+                android:key="settings"
+                android:title="@string/anonymous_label">
+                <CheckBoxPreference
+                    android:defaultValue="@string/allow_anonymous_default"
+                    android:key="allow_anonymous"
+                    android:summary="@string/anonymous_summary"
+                    android:title="@string/allow_anonymous_label" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+
+        <cn.edu.sdust.silence.itransfer.ftpserver.ppareit.android.DynamicMultiSelectListPreference
+            android:defaultValue="@array/empty_array"
+            android:entries="@array/empty_array"
+            android:entryValues="@array/empty_array"
+            android:key="autoconnect_preference"
+            android:summary="@string/autoconnect_summary"
+            android:title="@string/autoconnect_label" />
+
+        <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+            android:title="@string/advancedsettings_label">
+            <EditTextPreference
+                android:defaultValue="@string/portnumber_default"
+                android:key="portNum"
+                android:title="@string/portnumber_label" />
+            <Preference
+                android:key="chrootDir"
+                android:title="@string/chroot_label" />
+
+            <CheckBoxPreference
+                android:defaultValue="@string/wakelock_default"
+                android:key="stayAwake"
+                android:title="@string/wakelock_label" />
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="extra_category"
+        android:title="@string/extra_label">
+        <Preference
+            android:key="help"
+            android:title="@string/help_label" />
+        <Preference
+            android:key="about"
+            android:title="@string/about_label" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

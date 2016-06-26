@@ -7,7 +7,7 @@ iTransfer
 -  ftp
 -  Material Design
 
-#[安装包](https://github.com/cloudups/iTransfer/blob/master/app/app-release.apk)
+#[安装包](https://github.com/cloudups/iTransfer/blob/master/app/app-release.apk?raw=true)
 
 #程序截图
 
